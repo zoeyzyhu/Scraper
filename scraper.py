@@ -48,29 +48,29 @@ def LoadOutput(filename):
 		n = 0
 	return n
 
-def WaitUntil(xpath, s):
-	wait = WebDriverWait(driver, s)
+def WaitUntil(xpath):
+	wait = WebDriverWait(driver, 32400)
 	element = wait.until(
 		EC.element_to_be_clickable((By.XPATH, xpath))
 	)
 
 def Click(xpath):
-	WaitUntil(xpath, 5)
+	WaitUntil(xpath)
 	elem = driver.find_element_by_xpath(xpath)
 	elem.click()
 
 def SendKey(xpath, key):
-	WaitUntil(xpath, 5)
+	WaitUntil(xpath)
 	elem = driver.find_element_by_xpath(xpath)
 	elem.send_keys(key)
 
 def SelectOption(xpath, value):
-	WaitUntil(xpath, 5)
+	WaitUntil(xpath)
 	select = Select(driver.find_element_by_xpath(xpath))
 	select.select_by_value(value)
 
 def GetValue(xpath):
-	WaitUntil(xpath, 5)
+	WaitUntil(xpath)
 	elem = driver.find_element_by_xpath(xpath)
 	value = elem.text
 	return value
@@ -78,16 +78,15 @@ def GetValue(xpath):
 def Login(url, username, password, xpath_username, xpath_password,
 	xpath_submit, xpath):
 	driver.get(url)
-	WaitUntil(xpath_username, 5)
+	WaitUntil(xpath_username)
 	SendKey(xpath_username, username)
 	SendKey(xpath_password, password)
 	Click(xpath_submit)
-	WaitUntil(xpath, 32400)
+	WaitUntil(xpath)
 
 def SearchOrRestart(xpath, url, username, password, xpath_username,
 	xpath_password, xpath_submit):
 	try:
-		WaitUntil(xpath, 5)
 		Click(xpath)
 	except NoSuchElementException:
 		print('Out of time. Restart!')
@@ -96,11 +95,11 @@ def SearchOrRestart(xpath, url, username, password, xpath_username,
 
 def ScrapeOrSwitch(xpath1, xpath2):
 	try:
-		WaitUntil(xpath1, 5)
+		WaitUntil(xpath1)
 		count = GetValue(xpath1)
 	except NoSuchElementException:
 		try:
-			WaitUntil(xpath2, 5)
+			WaitUntil(xpath2)
 			count = GetValue(xpath2)
 		except NoSuchElementException:
 			print ('No result for publications. Check!')
