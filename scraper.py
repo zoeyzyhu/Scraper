@@ -95,11 +95,9 @@ def SearchOrRestart(xpath, url, username, password, xpath_username,
 
 def ScrapeOrSwitch(xpath1, xpath2):
 	try:
-		WaitUntil(xpath1)
 		count = GetValue(xpath1)
 	except NoSuchElementException:
 		try:
-			WaitUntil(xpath2)
 			count = GetValue(xpath2)
 		except NoSuchElementException:
 			print ('No result for publications. Check!')
