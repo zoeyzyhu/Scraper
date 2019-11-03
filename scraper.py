@@ -18,6 +18,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException 
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
+import datetime
 import random
 import argparse
 
@@ -136,6 +137,7 @@ if __name__ == '__main__':
 
 	# - get results
 	for i in range(n,nrow):
+		print(datetime.datetime.now())
 		print(brand[i], pbrand[i])
 		for y in yy:
 			print(y)
