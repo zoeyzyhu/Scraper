@@ -204,6 +204,10 @@ if __name__ == '__main__':
 	# - clear filters
 	clear_path = '/html/body/muso-root/div/div[1]/div[1]/div/muso-clear-filters/div/a'
 
+	# - total visits
+	total = '//*[@id="counterVisits"]'
+	ltotal = []
+
 	# selection and download
 	for a in range(nstart,261): # - region
 		print(datetime.datetime.now())
@@ -228,14 +232,16 @@ if __name__ == '__main__':
 					Click(traffic_path)
 					Click(traffic_option_path[d])
 
+					sleep(5)
 					Click(dwld_path)
-					Click(clear_path)
-					sleep(3)
 
+					sleep(3)
 					filename = region[a] + industry[b] + delivery[c] + traffic[d]
 					os.rename(file_path, refile_path + '%s.csv' % filename)
 					n += 1
 					print(str(n) + ':' + filename)
+
 					sleep(3)
+					Click(clear_path)
 
 # driver.close()
